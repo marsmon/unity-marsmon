@@ -1,0 +1,19 @@
+# cs工程文件
+*.csproj
+*.sln
+.idea
+obj
+.vscode
+*.log
+*.vsconfig
+
+# unity 工程忽略目录
+Temp
+Temp.meta
+/Library
+/Library.meta
+
+# 打包中间过程临时目录
+#生成ab包中间目录
+AssetBundles/*
+AssetBundles.meta
