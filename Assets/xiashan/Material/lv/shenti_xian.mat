@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: shenti_xian
+  m_Shader: {fileID: 4800000, guid: 69b73f97830b03044ad339768ef191d0, type: 3}
+  m_ShaderKeywords: _CBISSRCTEX_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CBLocalTex:
+        m_Texture: {fileID: 2800000, guid: 680a778b8df000946a3eb490d0fd7834, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 2800000, guid: da2cb7b25124f7e4b9c6e65682190128, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ILMTex:
+        m_Texture: {fileID: 2800000, guid: 0fb71c9b7d9d5ee4993ce3ca3d218703, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 7f88e1287ba87284e8861a583de4bcae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SssTex:
+        m_Texture: {fileID: 2800000, guid: e1a4882a16d59954288ff24bc1c1628e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _CBFNLblend: 0
+    - _CBFNLvalueI: 0.28
+    - _CBFNLvalueII: 0.07
+    - _CBIsSrcTex: 1
+    - _CBLocalBanBool: 0
+    - _CBLocalLight: 0.81
+    - _CBLocalThreshhold: 1
+    - _Outline: 0.15
+    - _viewAngle: 20
+    m_Colors:
+    - _CBFNLColor: {r: 0.4716981, g: 0.18294294, b: 0.11792453, a: 1}
+    - _CBLocalColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _aaaColor: {r: 0, g: 0.63529444, b: 1, a: 1}
