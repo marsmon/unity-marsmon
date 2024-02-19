@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a42e5036123ba1c4388f8fe2c404dd69
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - json: {instanceID: 0}
+  - texture: {instanceID: 0}
+  - BaseMaterial: {fileID: 2100000, guid: 00479832420f93e41a85bb8b4eed37f1, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

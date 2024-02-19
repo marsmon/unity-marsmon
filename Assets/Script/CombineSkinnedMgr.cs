@@ -44,18 +44,33 @@ public class UCombineSkinnedMgr {
 				ci.mesh = smr.sharedMesh;
 				ci.subMeshIndex = sub;
 				combineInstances.Add(ci);
+
+				// for (int k = 0; k < ci.mesh.boneWeights.Length; k++)
+				// {
+				// 	var boneWeight = ci.mesh.boneWeights[k];
+				// 	UnityEngine.Debug.Log("")
+				// }
 			}
+
+			UnityEngine.Debug.Log("i:" + i + " bone len:" + smr.bones.Length);
+
 			// Collect bones
 			for (int j = 0 ; j < smr.bones.Length; j ++)
 			{
+				bool find = false;
 				int tBase = 0;
 				for (tBase = 0; tBase < transforms.Count; tBase ++)
 				{
 					if (smr.bones[j].name.Equals(transforms[tBase].name))
 					{
 						bones.Add(transforms[tBase]);
+						find = true;
 						break;
 					}
+				}
+
+				if (!find) {
+					bones.Add(null);
 				}
 			}
 		}
@@ -101,6 +116,7 @@ public class UCombineSkinnedMgr {
 		r.sharedMesh = new Mesh();
 		r.sharedMesh.CombineMeshes(combineInstances.ToArray(), combine, false);// Combine meshes
 		r.bones = bones.ToArray();// Use new bones
+		UnityEngine.Debug.Log("sum bone len:" + r.bones.Length);
 		if (combine)
 		{
 			r.material = newMaterial;

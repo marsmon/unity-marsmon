@@ -39,8 +39,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: dbb23ba1debede5419373dc03b5f754a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexnew:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SssTex:
         m_Texture: {fileID: 2800000, guid: dbb23ba1debede5419373dc03b5f754a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SssTexnew:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -52,7 +60,8 @@ Material:
     - _CBLocalLight: 0.42
     - _CBLocalThreshhold: 1
     - _Outline: 0.15
-    - _viewAngle: 20
+    - _isvvv: 0
+    - _viewAngle: 0
     m_Colors:
     - _CBFNLColor: {r: 1, g: 1, b: 1, a: 1}
     - _CBLocalColor: {r: 1, g: 1, b: 1, a: 1}

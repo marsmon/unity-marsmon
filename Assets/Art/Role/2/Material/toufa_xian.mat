@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: toufa_xian
+  m_Shader: {fileID: 4800000, guid: 69b73f97830b03044ad339768ef191d0, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CBLocalTex:
+        m_Texture: {fileID: 2800000, guid: 1ef3b48aa53418e439c3b21d6349c03e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 2800000, guid: aab9eebcb85f39449a71182f4d6d4ecd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ILMTex:
+        m_Texture: {fileID: 2800000, guid: aa4e382786675344f99eb6d9aa797750, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 0e74775e23ca7c04fb25b9b19258f0b3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SssTex:
+        m_Texture: {fileID: 2800000, guid: 1227df4f67783964da236d64add7b90b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _CBFNLblend: 0
+    - _CBFNLvalueI: 1
+    - _CBFNLvalueII: 0
+    - _CBIsSrcTex: 1
+    - _CBLocalBanBool: 0
+    - _CBLocalLight: 0.42
+    - _CBLocalThreshhold: 1
+    - _Outline: 0.15
+    - _viewAngle: 0
+    m_Colors:
+    - _CBFNLColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CBLocalColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _aaaColor: {r: 1, g: 1, b: 1, a: 1}

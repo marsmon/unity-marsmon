@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 80f97418a9ec02f4b92e8dd48df1fe70
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - TagMode0: {instanceID: 0}
+  - SelfMode0: {instanceID: 0}
+  - Node: {instanceID: 0}
+  - SrcPre: {fileID: 4180513682499361979, guid: 27e1855b7440cd44fb9b6910956dd166,
+      type: 3}
+  - bg0: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

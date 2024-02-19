@@ -43,18 +43,18 @@ public class UCharacterController {
 		this.equipment_hand = hand;
 		this.equipment_feet = feet;
 		
-		string[] equipments = new string[4];
-		equipments [0] = head;
-		equipments [1] = chest;
-		equipments [2] = hand;
-		equipments [3] = feet;
+		string[] parts = new string[4];
+		parts [0] = head;
+		parts [1] = chest;
+		parts [2] = hand;
+		parts [3] = feet;
 		
         // Create and collect other parts SkinnedMeshRednerer
 		SkinnedMeshRenderer[] meshes = new SkinnedMeshRenderer[4];
 		GameObject[] objects = new GameObject[4];
-		for (int i = 0; i < equipments.Length; i++) {
+		for (int i = 0; i < parts.Length; i++) {
 			
-			res = Resources.Load ("Prefab/" + equipments [i]);
+			res = Resources.Load ("Prefab/" + parts [i]);
 			objects[i] = GameObject.Instantiate (res) as GameObject;
 			meshes[i] = objects[i].GetComponentInChildren<SkinnedMeshRenderer> ();
 		}
