@@ -4,7 +4,6 @@ Shader "YoFi/GGS_Char_SimpleBase"
     Properties
     {
         // _v("a",vector) = (0,0,0,0)
-        float4 clipRange;//渲染范围 左上到右下的矩形范围显示
 
         _MainTex ("BaseTex", 2D) = "white" {}
         _ILMTex("ILMTex",2D) = "white"{}
@@ -242,22 +241,6 @@ detail = lerp(_aaaColor * detail ,detail,detail);
                 finalColor.rgb = saturate(finalColor.rgb + emission.rgb);
 
 
-                float2 factor = float2(0, 0);
-                //判断是否在显示框内
-                if (i.worldPos.x >clipRange.x && i.worldPos.x < clipRange.z)
-                ｛
-                    factor.x = 1;
-                ｝
-                if (i.worldPos.y < clipRange.y && i.worldPos.y > clipRange.w)
-                ｛
-                    factor.y = 1;
-                ｝
-                //x,y坐标一个出框了就裁剪掉
-                finalColor.a = min(factor.x, factor.y);
-                clip(finalColor.a < 0.1f ? -1 : 1);
-
-
-
                 return BloomOutfrag(finalColor,cbcolor,dot(worldViewDir,worldNormal));
             }
             v2f vertOuline (appdata v)
@@ -279,6 +262,7 @@ detail = lerp(_aaaColor * detail ,detail,detail);
                 float4 verticalClipPos = UnityObjectToClipPos(v.vertex);
                 o.vertex.z = verticalClipPos.z / verticalClipPos.w * o.vertex.w ;
 
+                
                 return o;
             }
 
