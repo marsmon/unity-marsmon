@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿
+#if UNITY_2018_3 || UNITY_2019 || UNITY_2018_3_OR_NEWER
+#define NEW_PREFAB_SYSTEM
+#endif
+
+#if UNITY_2018_2_OR_NEWER
+#define HAS_CULL_TRANSPARENT_MESH
+#endif
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,17 +26,41 @@ public class UISkinnedMeshRenderer : MaskableGraphic
     public List<Matrix4x4> bindposesMatrix4x4 = null;
     public List<BoneWeight> boneWeights = null;
     
+    #region Overrides
+    private Texture baseTexture = null;
+    // This is used by the UI system to determine what to put in the MaterialPropertyBlock.
+    Texture overrideTexture;
+    public Texture OverrideTexture {
+        get { return overrideTexture; }
+        set {
+            overrideTexture = value;
+            canvasRenderer.SetTexture(this.mainTexture); // Refresh canvasRenderer's texture. Make sure it handles null.
+        }
+    }
+    #endregion
+    
+    #region Internals
+    public override Texture mainTexture {
+        get {
+            if (overrideTexture != null) return overrideTexture;
+            return baseTexture;
+        }
+    }
+    #endregion
 
     void OnEnable() {
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-        // m_SkinnedMesh = skinnedMeshRenderer.sharedMesh;
+        m_SkinnedMesh = skinnedMeshRenderer.sharedMesh;
+        baseTexture = skinnedMeshRenderer.sharedMaterial.mainTexture;
         SetVerticesDirty();
         SetMaterialDirty();
+        Rebuild(CanvasUpdate.PreRender);
     }
-
+    
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
+
         if (m_SkinnedMesh == null) return;
 
         m_SkinnedMesh.GetUVs(0, Uvs);
@@ -107,15 +140,14 @@ public class UISkinnedMeshRenderer : MaskableGraphic
 
         }
 
-        void Update()
-        {
+    }
 
-    #if UNITY_EDITOR
-            SetVerticesDirty();
-    #endif
+    void LateUpdate()
+    {
 
-        }
-
+#if UNITY_EDITOR
+    SetVerticesDirty();
+#endif
 
     }
 
