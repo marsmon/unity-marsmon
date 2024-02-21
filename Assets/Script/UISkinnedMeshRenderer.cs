@@ -20,19 +20,17 @@ public class UISkinnedMeshRenderer : MaskableGraphic
 
     void OnEnable() {
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-        m_SkinnedMesh = skinnedMeshRenderer.sharedMesh;
+        // m_SkinnedMesh = skinnedMeshRenderer.sharedMesh;
         SetVerticesDirty();
         SetMaterialDirty();
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
-        base.OnPopulateMesh(vh);
-
+        vh.Clear();
         if (m_SkinnedMesh == null) return;
 
         m_SkinnedMesh.GetUVs(0, Uvs);
-
 
 
         m_SkinnedMesh.GetVertices(Vertices);
@@ -46,6 +44,7 @@ public class UISkinnedMeshRenderer : MaskableGraphic
         m_SkinnedMesh.GetBoneWeights(boneWeights);
 
         bones = this.skinnedMeshRenderer.bones;
+
 
         //遍历顶点数，LBS蒙皮算法
         for (int i = 0; i < Vertices.Count; i++){
