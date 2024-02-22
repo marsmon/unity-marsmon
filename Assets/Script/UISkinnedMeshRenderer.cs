@@ -19,8 +19,11 @@ public class UISkinnedMeshRenderer : MaskableGraphic
     public Mesh skinnedMesh;
     private Mesh _bakeMesh;
 
-    public Vector2 _oneOfMeshSize;
-    public Vector2 _pivotSizeScale;
+    private Vector2 _oneOfMeshSize;
+    private Vector2 _pivotSizeScale;
+
+    public Vector2 MeshMin;
+    public Vector2 MeshSize;
     
     #region Overrides
     private Texture baseTexture = null;
@@ -87,18 +90,34 @@ public class UISkinnedMeshRenderer : MaskableGraphic
             uvs = new Vector2[verts.Length];
 
         // Get mesh bounds parameters
-        Vector2 meshMin = _bakeMesh.bounds.min;
-        Vector2 meshSize = _bakeMesh.bounds.size;
+        Vector3 meshMin = _bakeMesh.bounds.min;
+        Vector3 meshSize = _bakeMesh.bounds.size;
         var size = rectTransform.rect.size;
         var pivot = rectTransform.pivot;
 
+        MeshMin = meshMin;
+        MeshSize = meshSize;
+
         // Add scaled vertices
+        
         for (int ii = 0; ii < verts.Length; ii++)
         {
             Vector3 v = verts[ii];
-            v.x = (v.x - meshMin.x) * _oneOfMeshSize.x - _pivotSizeScale.x;
-            v.y = (v.y - meshMin.y) * _oneOfMeshSize.y - _pivotSizeScale.y;
-            v.z *= size.x;
+            // v.x = (v.x - meshMin.x) * _oneOfMeshSize.x - _pivotSizeScale.x;
+            // v.y = (v.y - meshMin.y) * _oneOfMeshSize.y - _pivotSizeScale.y;
+            //
+            // v.x = ((v.x - meshMin.x) / meshSize.x - pivot.x) * size.x;
+            // v.y = ((v.y - meshMin.y) / meshSize.y - pivot.y)*size.y;
+            // v.z = ((v.z - meshMin.z) / meshSize.z - 0)*size.x;
+
+            
+            v.x = v.x * 100 * size.x;
+            v.y = v.y * 100 * size.y;
+            v.z = v.z * 100 * size.x;
+            
+            //
+            // v.z *= 100;
+            // vh.AddVert(new Vector3(verts[ii].x, verts[ii].y, verts[ii].z), color, uvs[ii]);
             vh.AddVert(v, color, uvs[ii]);
         }
         
