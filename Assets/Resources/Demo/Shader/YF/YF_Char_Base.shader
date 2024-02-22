@@ -47,16 +47,18 @@ Shader "YoFi/GGS_Char_SimpleBase"
         Tags
         {
             "Queue"="Transparent"
-            "IgnoreProjector"="True"
+//            "IgnoreProjector"="True"
             "RenderType"="Transparent"
-            "PreviewType"="Plane"
-            "CanUseSpriteAtlas"="True"
+//            "PreviewType"="Plane"
+//            "CanUseSpriteAtlas"="True"
         }
 
-        Cull Off
-        Lighting Off
+//        Cull Off
+//        Lighting Off
         ZWrite Off
-        Blend One OneMinusSrcAlpha
+        ZTest LEqual
+        Blend One OneMinusSrcAlpha 
+		ColorMask [_ColorMask]
 //        Tags { "RenderType"="Opaque" }
 //        LOD 100
 
@@ -201,7 +203,7 @@ float4 _aaaColor ;
                     float4 pos = mul(mat, mul(unity_ObjectToWorld,float4(0,0,0,1)));
                     float4x4 mat2 = float4x4(1.0, 0.0, 0.0, 0.0,
                         0.0,  1.0,  0.0,   -pos.y + unity_ObjectToWorld[1][3],//pos.y < 0 ? -pos.y : 0,
-                        0.0, 0.0,  1.0, -pos.z + unity_ObjectToWorld[2][3],
+                        0.0, 0.0,  1.0 * 0.01, -pos.z + unity_ObjectToWorld[2][3],
                         0.0, 0.0, 0.0, 1.0
                     );
                     float4 pos0 = mul(mat, mul(unity_ObjectToWorld,v));
@@ -264,8 +266,9 @@ detail = lerp(_aaaColor * detail ,detail,detail);
                 finalColor.rgb = lerp(sssColor,baseColor,sssFactor) * detail * ilm.a;
                 finalColor.rgb = saturate(finalColor.rgb + emission.rgb);
 
-
-                return BloomOutfrag(finalColor,cbcolor,dot(worldViewDir,worldNormal));
+                finalColor = BloomOutfrag(finalColor,cbcolor,dot(worldViewDir,worldNormal));
+                finalColor.a = 1;
+                return finalColor;
             }
             v2f vertOuline (appdata v)
             {
@@ -296,7 +299,33 @@ detail = lerp(_aaaColor * detail ,detail,detail);
                 return float4(_OutlineColor.rgb, 1);
             }
         ENDCG
-
+        Pass
+        {
+            ZWrite On
+            ColorMask 0
+//            CGPROGRAM
+//            #pragma vertex vert
+//            #pragma fragment frag
+//            
+//            v2f vert (appdata v)
+//            { 
+//                v2f o;
+//                
+//                float4 worldPos = GetNewWorldPos(v.vertex,_viewAngle);
+//                // worldPos.z *= 0.1;
+//                // //顶点和法线转到观察空间
+//                o.vertex = mul(UNITY_MATRIX_V,worldPos);
+//                
+//                return o;
+//            
+//            }
+//            fixed4 frag (v2f i) : SV_Target
+//            {
+//                //背面都使用轮廓线的颜色渲染
+//                return 0;
+//            }
+//            ENDCG
+        }
         // 第一个Pass使用轮廓线颜色渲染整个背面的面片
         Pass
         {
@@ -343,5 +372,43 @@ detail = lerp(_aaaColor * detail ,detail,detail);
             #pragma multi_compile_fwdbase 
             ENDCG
         }
-    }
+
+        Pass
+        {
+            
+        Stencil
+        {
+            Ref [_Stencil]
+            Comp [_StencilComp]
+            Pass [_StencilOp]
+            ReadMask [_StencilReadMask]
+            WriteMask [_StencilWriteMask]
+        }
+            ZWrite On
+            ColorMask 0
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            
+            v2f vert (appdata v)
+            { 
+                v2f o;
+                
+                float4 worldPos = GetNewWorldPos(v.vertex,_viewAngle);
+                // worldPos.z *= 0.1;
+                // //顶点和法线转到观察空间
+                o.vertex = mul(UNITY_MATRIX_V,worldPos);
+                
+                return o;
+            
+            }
+            fixed4 frag (v2f i) : SV_Target
+            {
+                //背面都使用轮廓线的颜色渲染
+                return 0;
+            }
+            ENDCG
+        } 
+   }
 }
