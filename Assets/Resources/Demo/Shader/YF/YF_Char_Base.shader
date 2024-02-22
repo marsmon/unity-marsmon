@@ -30,6 +30,15 @@ Shader "YoFi/GGS_Char_SimpleBase"
         _CBFNLColor("CB 菲尼尔颜色",Color) = (1,1,1,1)
         _CBFNLvalueI("CB 菲尼尔阈值 I",Range(-1.0,1.0)) = 1.0
         _CBFNLvalueII("CB 菲尼尔阈值 II",Range(-1.0,1.0)) = 0.0
+
+        
+        _StencilComp ("Stencil Comparison", Float) = 8
+        _Stencil ("Stencil ID", Float) = 0
+        _StencilOp ("Stencil Operation", Float) = 0
+        _StencilWriteMask ("Stencil Write Mask", Float) = 255
+        _StencilReadMask ("Stencil Read Mask", Float) = 255
+
+        _ColorMask ("Color Mask", Float) = 15
     }
     SubShader
     {
@@ -276,6 +285,16 @@ detail = lerp(_aaaColor * detail ,detail,detail);
         // 第一个Pass使用轮廓线颜色渲染整个背面的面片
         Pass
         {
+            
+        Stencil
+        {
+            Ref [_Stencil]
+            Comp [_StencilComp]
+            Pass [_StencilOp]
+            ReadMask [_StencilReadMask]
+            WriteMask [_StencilWriteMask]
+        }
+
             //定义pass名称后，可以在其他shader里引用
             NAME "Outline"
             offset 1,10
@@ -291,6 +310,16 @@ detail = lerp(_aaaColor * detail ,detail,detail);
 
         Pass
         {
+            
+        Stencil
+        {
+            Ref [_Stencil]
+            Comp [_StencilComp]
+            Pass [_StencilOp]
+            ReadMask [_StencilReadMask]
+            WriteMask [_StencilWriteMask]
+        }
+
             Tags{"LightMode"="ForwardBase"}
             // Cull off 
             CGPROGRAM
