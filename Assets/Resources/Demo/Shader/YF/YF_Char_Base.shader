@@ -39,11 +39,26 @@ Shader "YoFi/GGS_Char_SimpleBase"
         _StencilReadMask ("Stencil Read Mask", Float) = 255
 
         _ColorMask ("Color Mask", Float) = 15
+        
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        
+        Tags
+        {
+            "Queue"="Transparent"
+            "IgnoreProjector"="True"
+            "RenderType"="Transparent"
+            "PreviewType"="Plane"
+            "CanUseSpriteAtlas"="True"
+        }
+
+        Cull Off
+        Lighting Off
+        ZWrite Off
+        Blend One OneMinusSrcAlpha
+//        Tags { "RenderType"="Opaque" }
+//        LOD 100
 
         CGINCLUDE
             #define YF_POST_BLOOM
