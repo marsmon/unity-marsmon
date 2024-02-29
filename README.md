@@ -1,5 +1,3 @@
-# unity-marsmon
+# Behavior Designer
 
-## Reference
-
-* []()
+Unity Behavior Designer plugin
