@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 6
+  m_Shader: {fileID: 4800000, guid: 0799d73dc9852d740890492de486904f, type: 3}
+  m_ShaderKeywords: _ISCLIPGROUND_ON _TIMEDT_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Effect0Tex:
+        m_Texture: {fileID: 2800000, guid: 951a4ec3c8d776a42a9eed3dc837481f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 96ad5e50f5047784f9ec8a03e4a5d2a7, type: 3}
+        m_Scale: {x: 2, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _CBLocalBanBool: 0
+    - _CBLocalLight: 1
+    - _CBLocalThreshhold: 1
+    - _ColorMask: 14
+    - _Cull: 0
+    - _DstBlend: 10
+    - _IsClipGround: 1
+    - _IsClipGroundBlur: 0.5
+    - _SrcBlend: 5
+    - _ZWrite: 0
+    - _mode: 6147
+    m_Colors:
+    - _BillboradSize: {r: 1, g: 1, b: 1, a: 0}
+    - _CBLocalColor: {r: 1, g: 0.65266395, b: 0.25, a: 1}
+    - _CustomBloomTag: {r: 1, g: 1, b: 1, a: 1}
+    - _Effect0AnimData: {r: 0.2, g: 0, b: 0, a: 4357}
+    - _Effect0Base: {r: 2, g: 0, b: 1, a: 2}
+    - _Effect0Color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+    - _Effect0Value: {r: 0.2, g: 0, b: 0, a: 0}
+    - _FresnelBase: {r: 0, g: 0, b: 0, a: 0}
+    - _FresnelColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _FresnelValue: {r: 0, g: 0.5, b: 0, a: 1}
+    - _MainAnimData: {r: -0.3, g: 0, b: 0, a: 4357}
+    - _MainBase: {r: 1, g: 0, b: 1, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainValue: {r: 1, g: 0, b: 0, a: 0}
+    - _ScrollViewRect: {r: 0, g: 0, b: 0, a: 0}

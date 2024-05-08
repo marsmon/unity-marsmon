@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: f527ef1a026f1a642a8eece672263507
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - screenBlendShader: {fileID: 4800000, guid: f9277af446ea59d4fbc779be952bb2f7, type: 3}
+  - BloomCutTag: {fileID: 4800000, guid: a6fcabe92f863ea46ad978512cc21397, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

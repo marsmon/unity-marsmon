@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219d9abacdfc184469aa850f7f71e0ad, type: 3}
+  m_Name: 1140
+  m_EditorClassIdentifier: 
+  ProductPlayer: 
+  Range: 5
+  MaxCount: 1
+  CDTime: 0
+  EffectList:
+  - SkillModeName: 
+    Obj: {fileID: 1413268012903528883, guid: 45555566de14ca2469ca566031e13abb, type: 3}
+    LifeFrame: 60
+    DelayFrame: 0
+    ExternalFrame: 0
+    PlayInRange: 0
+    AppearType: 0
+    TurnToTarget: 0
+    FollowType: 1
+  - SkillModeName: 
+    Obj: {fileID: 7957775997832487727, guid: 95b70abff559b8245886571187b28c4b, type: 3}
+    LifeFrame: 90
+    DelayFrame: 26
+    ExternalFrame: 0
+    PlayInRange: 0
+    AppearType: 1
+    TurnToTarget: 0
+    FollowType: 2
+  BuffList: []
