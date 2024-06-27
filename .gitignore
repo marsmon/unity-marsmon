@@ -12,6 +12,7 @@ Temp
 Temp.meta
 /Library
 /Library.meta
+UserSettings/Layouts/*
 
 # 打包中间过程临时目录
 #生成ab包中间目录
