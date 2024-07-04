@@ -144,7 +144,7 @@ namespace DamageNumbersPro.Internal {
             DrawTabs(bannerRect);
 
             //Distance:
-            EditorGUILayout.Space(42);
+            EditorGUILayout.Space(62);
         }
         static Rect DrawBanner(bool isMesh)
         {
@@ -297,6 +297,28 @@ namespace DamageNumbersPro.Internal {
             lastRect.y += lastRect.height - 3;
             lastRect.height = 22;
             currentTab = 4 + GUI.Toolbar(lastRect, currentTab - 4, new string[] { movementText, rotAndScaleText, spamText, performanceText }, buttonStyle);
+            lastRect.height += 2;
+
+            string independentText = "Independent";
+            if(currentWidth < 293)
+            {
+                independentText = "<size=11>Independent</size>";
+
+                if (currentWidth < 282)
+                {
+                    independentText = "<size=10>Independent</size>";
+
+                    if (currentWidth < 263)
+                    {
+                        independentText = "<size=9>Independent</size>";
+                    }
+                }
+            }
+
+            //Row 3:
+            lastRect.y += lastRect.height - 3;
+            lastRect.height = 22;
+            currentTab = 8 + GUI.Toolbar(lastRect, currentTab - 8, new string[] { independentText }, buttonStyle);
             lastRect.height += 2;
 
             //On Switch:
@@ -1159,7 +1181,7 @@ namespace DamageNumbersPro.Internal {
             {
                 try
                 {
-                    Debug.LogError("Not Support Version");
+                    Debug.LogError("Un support Unity Version");
                     // PrefabStageUtility.OpenPrefab(AssetDatabase.GetAssetPath(target));
                 }
                 catch

@@ -76,6 +76,25 @@ namespace DamageNumbersPro.Internal
         [Tooltip("Shakes out at this frequency.")]
         public float shakeFrequencyFadeOut = 4f;
 
+        // Independent:
+        public bool changeIndependent = false;
+        public bool enableIndependent = false;
+
+        [Tooltip("Duration for scale.")]
+        public float scale1EndTimeIndependent = 0.2f;
+        public float scale1StartTimeIndependent = 0f;
+        public bool enableScale1Independent = false;
+        [Tooltip("Scales out to this scale.")]
+        public Vector2 scale1Independent = new Vector2(2, 2);
+
+        [Tooltip("Duration for scale.")]
+        public float scale2EndTimeIndependent = 0.2f;
+        public float scale2StartTimeIndependent = 0f;
+        public bool enableScale2Independent = false;
+        [Tooltip("Scales out to this scale.")]
+        public Vector2 scale2Independent = new Vector2(2, 2);
+
+
         //Movement:
         public bool changeMovement = false;
         public bool enableLerp = true;
@@ -219,6 +238,19 @@ namespace DamageNumbersPro.Internal
                 }
             }
 
+            if (changeIndependent)
+            {
+                if (enableIndependent != dn.enableIndependent
+                     || scale1EndTimeIndependent != dn.scale1EndTimeIndependent || enableScale1Independent != dn.enableScale1Independent || scale1Independent != dn.scale1Independent ||
+                    scale1StartTimeIndependent != dn.scale1StartTimeIndependent
+                    || scale2EndTimeIndependent != dn.scale2EndTimeIndependent || enableScale2Independent != dn.enableScale2Independent || scale2Independent != dn.scale2Independent ||
+                    scale2StartTimeIndependent != dn.scale2StartTimeIndependent)
+                {
+                    isApplied = false;
+                }
+            }
+
+
             //Movement:
             if(changeMovement)
             {
@@ -350,6 +382,22 @@ namespace DamageNumbersPro.Internal
                 dn.shakeFrequencyFadeOut = shakeFrequencyFadeOut;
             }
 
+            //Independent:
+            if (changeIndependent)
+            {
+                dn.enableIndependent = enableIndependent;
+
+                dn.scale1EndTimeIndependent = scale1EndTimeIndependent;
+                dn.scale1StartTimeIndependent = scale1StartTimeIndependent;
+                dn.enableScale1Independent = enableScale1Independent;
+                dn.scale1Independent = scale1Independent;
+
+                dn.scale2EndTimeIndependent = scale2EndTimeIndependent;
+                dn.scale2StartTimeIndependent = scale2StartTimeIndependent;
+                dn.enableScale2Independent = enableScale2Independent;
+                dn.scale2Independent = scale2Independent;
+            }
+
             //Movement:
             if(changeMovement)
             {
@@ -454,6 +502,19 @@ namespace DamageNumbersPro.Internal
             enableShakeFadeOut = dn.enableShakeFadeOut;
             shakeOffsetFadeOut = dn.shakeOffsetFadeOut;
             shakeFrequencyFadeOut = dn.shakeFrequencyFadeOut;
+
+            //Independent:
+            changeIndependent = true;
+            enableIndependent = dn.enableIndependent;
+            scale1EndTimeIndependent = dn.scale1EndTimeIndependent;
+            scale1StartTimeIndependent = dn.scale1StartTimeIndependent;
+            enableScale1Independent = dn.enableScale1Independent;
+            scale1Independent = dn.scale1Independent;
+            
+            scale2EndTimeIndependent = dn.scale2EndTimeIndependent;
+            scale2StartTimeIndependent = dn.scale2StartTimeIndependent;
+            enableScale2Independent = dn.enableScale2Independent;
+            scale2Independent = dn.scale2Independent;
 
             //Movement:
             changeMovement = true;

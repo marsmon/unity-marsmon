@@ -118,6 +118,27 @@ namespace DamageNumbersPro
         public float shakeFrequencyFadeOut = 4f;
         #endregion
 
+        #region Independent
+        //Independent:
+        public float currentTime = 0f;
+        public bool enableIndependent = false;
+
+        [Tooltip("Duration for scale.")]
+        public float scale1EndTimeIndependent = 0.2f;
+        public float scale1StartTimeIndependent = 0f;
+        public bool enableScale1Independent = false;
+        [Tooltip("Scales out to this scale.")]
+        public Vector2 scale1Independent = new Vector2(2, 2);
+
+        [Tooltip("Duration for scale.")]
+        public float scale2EndTimeIndependent = 0.2f;
+        public float scale2StartTimeIndependent = 0f;
+        public bool enableScale2Independent = false;
+        [Tooltip("Scales out to this scale.")]
+        public Vector2 scale2Independent = new Vector2(2, 2);
+        #endregion
+
+
         #region Movement Settings
         //Lerping:
         public bool enableLerp = true;
@@ -233,6 +254,14 @@ namespace DamageNumbersPro
         protected float baseAlpha;
         Vector2 currentScaleInOffset;
         Vector2 currentScaleOutOffset;
+
+        //Independent:
+        float independentScale1Speed;
+        float independentScale2Speed;
+        protected float scale1CurrentIndependent;
+        protected float scale2CurrentIndependent;
+        Vector3 independentLastScale;
+
 
         //Position:
         public Vector3 position;
@@ -359,6 +388,9 @@ namespace DamageNumbersPro
             {
                 HandleFadeOut(delta);
             }
+
+            if (enableIndependent)
+                HandleIndependent(delta);
 
             //Custom Event:
             OnUpdate(delta);
@@ -1379,6 +1411,17 @@ namespace DamageNumbersPro
                 if (currentScaleOutOffset.y == 0) currentScaleOutOffset.y += 0.001f;
             }
 
+            //Independent:
+            var enabled1 = scale1EndTimeIndependent > 0f ? true : false;
+            var enabled2 = scale2EndTimeIndependent > 0f ? true : false;
+            enableIndependent = enabled2 || enabled1;
+            scale1CurrentIndependent = 1f;
+            scale2CurrentIndependent = 1f;
+            independentLastScale = Vector3.one;
+            currentTime = 0f;
+            independentScale1Speed = 1f / Mathf.Max(0.0001f, scale1EndTimeIndependent - scale1StartTimeIndependent);
+            independentScale2Speed = 1f / Mathf.Max(0.0001f, scale2EndTimeIndependent - scale2StartTimeIndependent);
+
             lastTargetPosition = Vector3.zero;
 
             //Update Text:
@@ -1846,6 +1889,31 @@ namespace DamageNumbersPro
             if (currentFade <= 0)
             {
                 DestroyDNP();
+            }
+        }
+        void HandleIndependent(float delta)
+        {
+            currentTime += delta;
+
+            if (currentTime >= scale1StartTimeIndependent && currentTime <= scale1EndTimeIndependent) {
+                if (enableScale1Independent)
+                {
+                    scale1CurrentIndependent = Mathf.Max(0, scale1CurrentIndependent - delta * independentScale1Speed);
+                    Vector3 newScale = Vector2.Lerp(scale1Independent, Vector2.one, scale1CurrentIndependent);
+                    newScale.z = 1;
+                    transformA.localScale = transformB.localScale = newScale;
+                    independentLastScale = newScale;
+                }
+            }
+
+            if (currentTime >= scale2StartTimeIndependent && currentTime <= scale2EndTimeIndependent) {
+                if (enableScale2Independent)
+                {
+                    scale2CurrentIndependent = Mathf.Max(0, scale2CurrentIndependent - delta * independentScale2Speed);
+                    Vector3 newScale = Vector2.Lerp(scale2Independent, independentLastScale, scale2CurrentIndependent);
+                    newScale.z = 1;
+                    transformA.localScale = transformB.localScale = newScale;
+                }
             }
         }
         void UpdateFade(bool enablePositionOffset, Vector2 positionOffset, bool enableScaleOffset, Vector2 scaleOffset, bool enableScale, Vector2 scale, bool enableShake, Vector2 shakeOffset, float shakeFrequency)

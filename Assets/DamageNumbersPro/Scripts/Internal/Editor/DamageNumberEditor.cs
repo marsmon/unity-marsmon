@@ -98,6 +98,15 @@ namespace DamageNumbersPro
                     DisplayFeature("enablePooling", "Pooling");
                     DisplayPerformanceHints();
                     break;
+                case (8): //Independent
+                    DisplayIndependentMain();
+                    DisplayFeature("enableScale1Independent", "Independent Scale1", "Scale1");
+                    DisplayFeature("enableScale2Independent", "Independent Scale2", "Scale2");
+                    break;
+
+                default:
+                    Debug.LogError("Unexpected Error=" + DNPEditorInternal.currentTab);
+                    break;
             }
 
             //Fix Variables:
@@ -340,6 +349,12 @@ namespace DamageNumbersPro
             //Fade:
             dn.durationFadeIn = Mathf.Max(0, dn.durationFadeIn);
             dn.durationFadeOut = Mathf.Max(0, dn.durationFadeOut);
+
+            // Independent:
+            dn.scale1EndTimeIndependent = Mathf.Max(0, dn.scale1EndTimeIndependent);
+            dn.scale1StartTimeIndependent = Mathf.Max(0, dn.scale1StartTimeIndependent);
+            dn.scale2EndTimeIndependent = Mathf.Max(0, dn.scale2EndTimeIndependent);
+            dn.scale2StartTimeIndependent = Mathf.Max(0, dn.scale2StartTimeIndependent);
 
             //Digit:
             dn.digitSettings.decimals = Mathf.Max(0, dn.digitSettings.decimals);
@@ -961,6 +976,22 @@ namespace DamageNumbersPro
                         DNPEditorInternal.Label("- Used for <b>vibration</b> or <b>motion</b> when fading out.");
                         break;
 
+                    //Independent:
+                    case ("Independent Scale1"):
+                        DNPEditorInternal.Label("<b>Function:</b>");
+                        DNPEditorInternal.Label("- Independent to a customizable <b>scale</b>.");
+                        DNPEditorInternal.Label("");
+                        DNPEditorInternal.Label("<b>Information:</b>");
+                        DNPEditorInternal.Label("- Is used for <b>shrinking</b> or <b>growing</b> when showing.");
+                        break;
+                    case ("Independent Scale2"):
+                        DNPEditorInternal.Label("<b>Function:</b>");
+                        DNPEditorInternal.Label("- Independent to a customizable <b>scale</b>.");
+                        DNPEditorInternal.Label("");
+                        DNPEditorInternal.Label("<b>Information:</b>");
+                        DNPEditorInternal.Label("- Is used for <b>shrinking</b> or <b>growing</b> when showing.");
+                        break;
+
                     //Rotation & Scale:
                     case ("Start Rotation"):
                         DNPEditorInternal.Label("<b>Function:</b>");
@@ -1303,6 +1334,15 @@ namespace DamageNumbersPro
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("shakeOffsetFadeOut"), new GUIContent("Shake Offset"));
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("shakeFrequencyFadeOut"), new GUIContent("Shake Frequency"));
                         break;
+
+                    //Independent:
+                    case ("Independent Scale1"):
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("scale1Independent"), new GUIContent("Scale1"));
+                        break;
+                    case ("Independent Scale2"):
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("scale2Independent"), new GUIContent("Scale2"));
+                        break;
+
 
                     //Rotation & Scale:
                     case ("Start Rotation"):
@@ -1749,6 +1789,50 @@ namespace DamageNumbersPro
 
             DNPEditorInternal.CloseBox();
         }
+        void DisplayIndependentMain()
+        {
+            EditorGUILayout.Space(4);
+            {
+                //Delays:
+                DNPEditorInternal.StartBox();
+
+                EditorGUILayout.BeginHorizontal();
+                SerializedProperty serializedProperty = serializedObject.FindProperty("scale1StartTimeIndependent");
+                EditorGUILayout.PropertyField(serializedProperty, new GUIContent("Start Time1", "The start duration it takes to scale."));
+                TimePropertyOverlay(serializedProperty.floatValue);
+                ResetButton("Independent Scale1 Start Time");
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                SerializedProperty serializedProperty2 = serializedObject.FindProperty("scale1EndTimeIndependent");
+                EditorGUILayout.PropertyField(serializedProperty2, new GUIContent("End Time1", "The duration it takes to scale."));
+                TimePropertyOverlay(serializedProperty2.floatValue);
+                ResetButton("Independent Scale1 Duration");
+                EditorGUILayout.EndHorizontal();
+
+                DNPEditorInternal.CloseBox();
+            }
+            {
+                //Delays:
+                DNPEditorInternal.StartBox();
+
+                EditorGUILayout.BeginHorizontal();
+                SerializedProperty serializedProperty = serializedObject.FindProperty("scale2StartTimeIndependent");
+                EditorGUILayout.PropertyField(serializedProperty, new GUIContent("Start Time2", "The start duration it takes to scale."));
+                TimePropertyOverlay(serializedProperty.floatValue);
+                ResetButton("Independent Scale2 Start Time");
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                SerializedProperty serializedProperty2 = serializedObject.FindProperty("scale2EndTimeIndependent");
+                EditorGUILayout.PropertyField(serializedProperty2, new GUIContent("End Time2", "The duration it takes to scale."));
+                TimePropertyOverlay(serializedProperty2.floatValue);
+                ResetButton("Independent Scale2 Duration");
+                EditorGUILayout.EndHorizontal();
+
+                DNPEditorInternal.CloseBox();
+            }
+        }
         void DisplaySpamControlMain(bool isMesh)
         {
             EditorGUILayout.Space(2);
@@ -2139,6 +2223,30 @@ namespace DamageNumbersPro
                     case ("Cross Scale Out"):
                         dn.crossScaleFadeOut = new Vector2(1f, 1.5f);
                         break;
+
+                    //Independent:
+                    case ("Independent Scale1 Duration"):
+                        dn.scale1EndTimeIndependent = 0.2f;
+                        break;
+                    case ("Independent Scale1 Start Time"):
+                        dn.scale1StartTimeIndependent = 0f;
+                        break;
+                    case ("Independent Scale1"):
+                        dn.enableScale1Independent = true;
+                        dn.scale1Independent = new Vector2(1f, 1f);
+                        break;
+
+                    case ("Independent Scale2 Duration"):
+                        dn.scale2EndTimeIndependent = 0.2f;
+                        break;
+                    case ("Independent Scale2 Start Time"):
+                        dn.scale2StartTimeIndependent = 0f;
+                        break;
+                    case ("Independent Scale2"):
+                        dn.enableScale2Independent = true;
+                        dn.scale2Independent = new Vector2(1f, 1f);
+                        break;
+
 
                     //Rotation & Scale:
                     case ("Start Rotation"):
